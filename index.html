@@ -513,41 +513,43 @@
     </button>
 
     <!-- TAB NAV -->
-    <nav class="tab-nav hide" id="tabNav" aria-label="Navigasi section">
-        <button class="tab-btn active" data-section="hero" aria-label="Home">
-            <i class="fa-solid fa-house"></i>
-        </button>
-        <button class="tab-btn" data-section="salam" aria-label="Salam">
-            <i class="fa-solid fa-hands"></i>
-        </button>
-        <button class="tab-btn" data-section="ayat" aria-label="Ayat">
-            <i class="fa-solid fa-book-quran"></i>
-        </button>
-        <button class="tab-btn" data-section="mempelai" aria-label="Mempelai">
-            <i class="fa-solid fa-user-group"></i>
-        </button>
-        <button class="tab-btn" data-section="galeri" aria-label="Galeri">
-            <i class="fa-solid fa-images"></i>
-        </button>
-        <button class="tab-btn" data-section="countdown" aria-label="Hitung">
-            <i class="fa-solid fa-hourglass-half"></i>
-        </button>
-        <button class="tab-btn" data-section="acara" aria-label="Acara">
-            <i class="fa-solid fa-calendar-day"></i>
-        </button>
-        <button class="tab-btn" data-section="lokasi" aria-label="Lokasi">
-            <i class="fa-solid fa-map-location-dot"></i>
-        </button>
-        <button class="tab-btn" data-section="ucapan" aria-label="Ucap">
-            <i class="fa-solid fa-comments"></i>
-        </button>
-        <button class="tab-btn" data-section="hadiah" aria-label="Hadiah">
-            <i class="fa-solid fa-gift"></i>
-        </button>
-        <button class="tab-btn tab-nav-toggle" id="tabNavToggle" aria-label="Toggle navigasi">
+    <div class="nav-wrapper" id="navWrapper">
+        <nav class="tab-nav" id="tabNav" aria-label="Navigasi section">
+            <button class="tab-btn active" data-section="hero" aria-label="Home">
+                <i class="fa-solid fa-house"></i>
+            </button>
+            <button class="tab-btn" data-section="salam" aria-label="Salam">
+                <i class="fa-solid fa-hands"></i>
+            </button>
+            <button class="tab-btn" data-section="ayat" aria-label="Ayat">
+                <i class="fa-solid fa-book-quran"></i>
+            </button>
+            <button class="tab-btn" data-section="mempelai" aria-label="Mempelai">
+                <i class="fa-solid fa-user-group"></i>
+            </button>
+            <button class="tab-btn" data-section="galeri" aria-label="Galeri">
+                <i class="fa-solid fa-images"></i>
+            </button>
+            <button class="tab-btn" data-section="countdown" aria-label="Hitung">
+                <i class="fa-solid fa-hourglass-half"></i>
+            </button>
+            <button class="tab-btn" data-section="acara" aria-label="Acara">
+                <i class="fa-solid fa-calendar-day"></i>
+            </button>
+            <button class="tab-btn" data-section="lokasi" aria-label="Lokasi">
+                <i class="fa-solid fa-map-location-dot"></i>
+            </button>
+            <button class="tab-btn" data-section="ucapan" aria-label="Ucap">
+                <i class="fa-solid fa-comments"></i>
+            </button>
+            <button class="tab-btn" data-section="hadiah" aria-label="Hadiah">
+                <i class="fa-solid fa-gift"></i>
+            </button>
+        </nav>
+        <button class="tab-nav-toggle" id="tabNavToggle" aria-label="Toggle navigasi">
             <i class="fa-solid fa-chevron-up" id="navToggleIcon"></i>
         </button>
-    </nav>
+    </div>
 
     <div id="ucapanToast" class="toast hidden"></div>
 </body>
