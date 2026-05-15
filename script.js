@@ -72,6 +72,7 @@
 
         els.cover.classList.add('fade-out');
         playMusic();
+        spawnFloatingHands();
 
         setTimeout(function () {
             els.cover.style.display = 'none';
@@ -79,6 +80,17 @@
             window.scrollTo(0, 0);
             mulaiCountdown();
         }, CONFIG.coverFadeMs);
+    }
+
+    /* ========== FLOATING HANDS ========== */
+    function spawnFloatingHands() {
+        var container = document.getElementById('float-hands');
+        if (!container || container.hasChildNodes()) return;
+        for (var i = 0; i < 10; i++) {
+            var icon = document.createElement('i');
+            icon.className = 'fa-solid fa-hand-middle-finger';
+            container.appendChild(icon);
+        }
     }
 
     /* ========== COUNTDOWN ========== */

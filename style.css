@@ -248,6 +248,44 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     animation: pageGlow 12s ease-in-out infinite;
 }
 
+#float-hands {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#float-hands i {
+    position: absolute;
+    font-size: 2rem;
+    color: var(--primary);
+    opacity: 0.15;
+    animation: floatHand 10s ease-in-out infinite;
+}
+
+#float-hands i:nth-child(1) { left: 5%; top: -5%; animation-duration: 12s; animation-delay: 0s; font-size: 1.8rem; }
+#float-hands i:nth-child(2) { left: 20%; top: -5%; animation-duration: 14s; animation-delay: 1s; font-size: 2.2rem; }
+#float-hands i:nth-child(3) { left: 40%; top: -5%; animation-duration: 11s; animation-delay: 2s; font-size: 1.6rem; }
+#float-hands i:nth-child(4) { left: 60%; top: -5%; animation-duration: 13s; animation-delay: 0.5s; font-size: 2rem; }
+#float-hands i:nth-child(5) { left: 75%; top: -5%; animation-duration: 15s; animation-delay: 1.5s; font-size: 1.7rem; }
+#float-hands i:nth-child(6) { left: 90%; top: -5%; animation-duration: 12s; animation-delay: 3s; font-size: 2.3rem; }
+#float-hands i:nth-child(7) { left: 10%; top: -5%; animation-duration: 16s; animation-delay: 4s; font-size: 1.5rem; }
+#float-hands i:nth-child(8) { left: 50%; top: -5%; animation-duration: 10s; animation-delay: 2.5s; font-size: 1.9rem; }
+#float-hands i:nth-child(9) { left: 85%; top: -5%; animation-duration: 14s; animation-delay: 3.5s; font-size: 2.1rem; }
+#float-hands i:nth-child(10) { left: 30%; top: -5%; animation-duration: 13s; animation-delay: 5s; font-size: 1.4rem; }
+
+@keyframes floatHand {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0; }
+    10% { opacity: 0.15; }
+    50% { transform: translateY(50vh) rotate(180deg) scale(1.2); opacity: 0.12; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(105vh) rotate(360deg) scale(1); opacity: 0; }
+}
+
 @keyframes pageGlow {
     0%, 100% { background-position: 0% 50%; opacity: 0.6; }
     25% { background-position: 100% 0%; opacity: 1; }
