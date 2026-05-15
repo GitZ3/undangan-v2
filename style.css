@@ -754,7 +754,9 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 }
 
 .section-line {
-    width: 60px;
+    flex: 1;
+    max-width: 60px;
+    min-width: 10px;
     height: 1px;
     background: var(--primary);
     opacity: 0.5;
@@ -766,6 +768,8 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .section-title i { font-size: 1.2rem; }
@@ -1853,9 +1857,9 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .countdown-num { font-size: 1.8rem; }
     .countdown-separator { font-size: 1.5rem; }
     .section-header { gap: 10px; }
-    .section-title { font-size: 1.1rem; gap: 6px; white-space: nowrap; }
+    .section-title { font-size: 1.1rem; gap: 6px; }
     .section-title i { font-size: 0.9rem; }
-    .section-line { width: 30px; }
+    .section-line { max-width: 30px; }
 }
 
 @media (max-width: 480px) {
@@ -1867,7 +1871,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .photo-frame { height: 230px; }
     .galeri-grid { grid-template-columns: repeat(2, 1fr); }
     .section-header { gap: 8px; }
-    .section-title { font-size: 1rem; gap: 5px; white-space: nowrap; }
+    .section-title { font-size: 1rem; gap: 5px; }
     .section-title i { font-size: 0.8rem; }
-    .section-line { width: 20px; }
+    .section-line { max-width: 20px; }
 }
