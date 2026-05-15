@@ -233,54 +233,26 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     min-height: 100vh;
 }
 
-#undangan section {
-    position: relative;
-    overflow: hidden;
-}
-
-.section-bg {
-    position: absolute;
+#page-bg {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
     z-index: 0;
-}
-
-.section-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    pointer-events: none;
     background:
-        radial-gradient(circle at 20% 30%, rgba(201, 169, 98, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(201, 169, 98, 0.06) 0%, transparent 40%);
-    animation: sectionGlow 8s ease-in-out infinite;
+        linear-gradient(135deg, transparent 20%, rgba(201, 169, 98, 0.04) 40%, transparent 60%),
+        linear-gradient(225deg, transparent 20%, rgba(201, 169, 98, 0.03) 40%, transparent 60%);
+    background-size: 400% 400%;
+    animation: pageGlow 12s ease-in-out infinite;
 }
 
-.section-bg::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23c9a962' fill-opacity='0.08'/%3E%3C/svg%3E");
-    background-size: 40px 40px;
-    animation: particleDrift 12s linear infinite;
-}
-
-@keyframes sectionGlow {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-}
-
-@keyframes particleDrift {
-    0% { background-position: 0 0; }
-    100% { background-position: 40px 40px; }
+@keyframes pageGlow {
+    0%, 100% { background-position: 0% 50%; opacity: 0.6; }
+    25% { background-position: 100% 0%; opacity: 1; }
+    50% { background-position: 50% 100%; opacity: 0.6; }
+    75% { background-position: 0% 100%; opacity: 1; }
 }
 
 /* HERO */
