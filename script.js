@@ -37,6 +37,7 @@
         musicIcon: $('#musicIcon'),
         bgMusic: $('#bgMusic'),
         tabNav: $('#tabNav'),
+        tabNavToggle: $('#tabNavToggle'),
         tabBtns: function () { return $$('.tab-btn'); },
         sections: function () { return $$('section[id]'); },
         ucapanForm: $('#ucapanForm'),
@@ -49,6 +50,7 @@
     };
 
     var STORAGE_KEY = 'undangan_ucapan';
+    var NAV_AUTOHIDE_MS = 3000;
 
     /* ========== UTILS ========== */
     function pad(n) { return String(n).padStart(2, '0'); }
@@ -190,6 +192,31 @@
     }
 
     /* ========== TAB NAV ========== */
+    var navHideTimer = null;
+
+    function showNav() {
+        if (els.tabNav) els.tabNav.classList.remove('hide');
+        resetNavTimer();
+    }
+
+    function hideNav() {
+        if (els.tabNav) els.tabNav.classList.add('hide');
+    }
+
+    function toggleNav() {
+        var isHidden = els.tabNav && els.tabNav.classList.contains('hide');
+        if (isHidden) {
+            showNav();
+        } else {
+            hideNav();
+        }
+    }
+
+    function resetNavTimer() {
+        if (navHideTimer) clearTimeout(navHideTimer);
+        navHideTimer = setTimeout(hideNav, NAV_AUTOHIDE_MS);
+    }
+
     function scrollToSection(sectionId) {
         var section = document.getElementById(sectionId);
         if (!section) return;
@@ -199,6 +226,8 @@
         els.tabBtns().forEach(function (b) { b.classList.remove('active'); });
         var match = els.tabNav.querySelector('[data-section="' + sectionId + '"]');
         if (match) match.classList.add('active');
+
+        showNav();
     }
 
     function scrollNavToActive(btn) {
@@ -354,7 +383,23 @@
                 var sectionId = btn.getAttribute('data-section');
                 if (sectionId) scrollToSection(sectionId);
             });
+
+            els.tabNav.addEventListener('mouseenter', showNav);
+            els.tabNav.addEventListener('mouseleave', resetNavTimer);
         }
+
+        if (els.tabNavToggle) {
+            els.tabNavToggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                toggleNav();
+            });
+        }
+
+        document.addEventListener('mousemove', function (e) {
+            if (e.clientX < 100 && els.tabNav && els.tabNav.classList.contains('hide')) {
+                showNav();
+            }
+        });
 
         if (els.ucapanForm) {
             els.ucapanForm.addEventListener('submit', handleUcapanSubmit);

@@ -1706,6 +1706,44 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     -ms-overflow-style: none;
     overscroll-behavior: contain;
     text-align: center;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-nav.hide {
+    left: -62px;
+}
+
+.tab-nav-toggle {
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 40px;
+    background: rgba(26, 26, 26, 0.95);
+    border: 1px solid rgba(201, 169, 98, 0.3);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 0.6rem;
+    transition: all 0.3s ease;
+    z-index: 9998;
+}
+
+.tab-nav-toggle:hover {
+    background: rgba(201, 169, 98, 0.2);
+}
+
+.tab-nav-toggle i {
+    transition: transform 0.35s ease;
+}
+
+.tab-nav.hide .tab-nav-toggle i {
+    transform: rotate(180deg);
 }
 
 .tab-nav::-webkit-scrollbar { display: none; }
