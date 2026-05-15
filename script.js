@@ -11,7 +11,7 @@
             return d;
         })(),
         coverFadeMs: 800,
-        autoScrollSpeed: 1,
+        autoScrollSpeed: 2,
         toastDurationMs: 3000
     };
 
