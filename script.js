@@ -400,17 +400,9 @@
 
         if (els.tabNavToggle) {
             els.tabNavToggle.addEventListener('click', function () {
-                showNav();
-                resetNavTimer();
+                toggleNav();
             });
         }
-
-        document.addEventListener('mousemove', function (e) {
-            if (e.clientX < 100 && els.tabNav && els.tabNav.classList.contains('hide')) {
-                showNav();
-                resetNavTimer();
-            }
-        });
 
         if (els.ucapanForm) {
             els.ucapanForm.addEventListener('submit', handleUcapanSubmit);
