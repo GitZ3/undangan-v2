@@ -391,7 +391,10 @@
                 if (sectionId) scrollToSection(sectionId);
             });
 
-            els.tabNav.addEventListener('mouseenter', showNav);
+            els.tabNav.addEventListener('mouseenter', function () {
+                showNav();
+                resetNavTimer();
+            });
             els.tabNav.addEventListener('mouseleave', resetNavTimer);
         }
 
@@ -404,6 +407,7 @@
         document.addEventListener('mousemove', function (e) {
             if (e.clientX < 100 && els.tabNav && els.tabNav.classList.contains('hide')) {
                 showNav();
+                resetNavTimer();
             }
         });
 
