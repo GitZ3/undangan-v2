@@ -1716,7 +1716,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
 .tab-nav-toggle {
     position: fixed;
-    left: -8px;
+    left: 69px;
     top: 50%;
     transform: translateY(-50%);
     width: 24px;
@@ -1729,9 +1729,9 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 9996;
+    z-index: 9998;
 }
 
 .tab-nav-toggle:hover {
