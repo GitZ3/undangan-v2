@@ -196,7 +196,6 @@
 
     function showNav() {
         if (els.tabNav) els.tabNav.classList.remove('hide');
-        resetNavTimer();
     }
 
     function hideNav() {
