@@ -1852,6 +1852,9 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .countdown-box { min-width: 70px; padding: 15px; }
     .countdown-num { font-size: 1.8rem; }
     .countdown-separator { font-size: 1.5rem; }
+    .section-title { font-size: 1.3rem; gap: 8px; }
+    .section-title i { font-size: 1rem; }
+    .section-line { width: 40px; }
 }
 
 @media (max-width: 480px) {
@@ -1862,4 +1865,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .hero-date-box .day { font-size: 2rem; }
     .photo-frame { height: 230px; }
     .galeri-grid { grid-template-columns: repeat(2, 1fr); }
+    .section-title { font-size: 1.1rem; }
+    .section-title i { font-size: 0.9rem; }
+    .section-line { width: 30px; }
 }
