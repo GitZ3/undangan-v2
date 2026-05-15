@@ -243,6 +243,14 @@
         nav.scrollTop = targetScroll;
     }
 
+    function setupNavToggle() {
+        if (!els.tabNavToggle) return;
+        els.tabNavToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            toggleNav();
+        });
+    }
+
     function setupIntersectionObserver() {
         var allSections = els.sections();
         if (!allSections.length) return;
@@ -379,7 +387,7 @@
         if (els.tabNav) {
             els.tabNav.addEventListener('click', function (e) {
                 var btn = e.target.closest('.tab-btn');
-                if (!btn) return;
+                if (!btn || btn.classList.contains('tab-nav-toggle')) return;
                 var sectionId = btn.getAttribute('data-section');
                 if (sectionId) scrollToSection(sectionId);
             });
