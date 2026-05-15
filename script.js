@@ -19,7 +19,8 @@
     var state = {
         autoScrollEnabled: false,
         scrollRafId: null,
-        countdownInterval: null
+        countdownInterval: null,
+        musicPlaying: false
     };
 
     /* ========== DOM CACHE ========== */
@@ -32,6 +33,9 @@
         btnBuka: $('#btnBuka'),
         autoScrollBtn: $('#autoScrollBtn'),
         scrollIcon: $('#scrollIcon'),
+        musicBtn: $('#musicBtn'),
+        musicIcon: $('#musicIcon'),
+        bgMusic: $('#bgMusic'),
         tabNav: $('#tabNav'),
         tabBtns: function () { return $$('.tab-btn'); },
         sections: function () { return $$('section[id]'); },
@@ -61,6 +65,7 @@
         if (!els.cover || !els.undangan) return;
 
         els.cover.classList.add('fade-out');
+        playMusic();
 
         setTimeout(function () {
             els.cover.style.display = 'none';
@@ -103,6 +108,36 @@
 
         update();
         state.countdownInterval = setInterval(update, 1000);
+    }
+
+    /* ========== MUSIC ========== */
+    function playMusic() {
+        var audio = els.bgMusic;
+        if (!audio) return;
+
+        audio.play().then(function () {
+            state.musicPlaying = true;
+            if (els.musicBtn) els.musicBtn.classList.add('playing');
+            if (els.musicBtn) els.musicBtn.classList.remove('muted');
+        }).catch(function () {});
+    }
+
+    function toggleMusic() {
+        var audio = els.bgMusic;
+        if (!audio) return;
+
+        if (state.musicPlaying) {
+            audio.pause();
+            state.musicPlaying = false;
+            if (els.musicBtn) els.musicBtn.classList.remove('playing');
+            if (els.musicBtn) els.musicBtn.classList.add('muted');
+        } else {
+            audio.play().then(function () {
+                state.musicPlaying = true;
+                if (els.musicBtn) els.musicBtn.classList.add('playing');
+                if (els.musicBtn) els.musicBtn.classList.remove('muted');
+            }).catch(function () {});
+        }
     }
 
     /* ========== AUTO SCROLL ========== */
@@ -250,6 +285,10 @@
 
         if (els.autoScrollBtn) {
             els.autoScrollBtn.addEventListener('click', toggleAutoScroll);
+        }
+
+        if (els.musicBtn) {
+            els.musicBtn.addEventListener('click', toggleMusic);
         }
 
         if (els.tabNav) {

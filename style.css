@@ -1549,6 +1549,47 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     color: #0a0a0a;
 }
 
+/* MUSIC */
+.music-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 25px;
+    width: 44px;
+    height: 44px;
+    background: var(--gold-gradient);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 9998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(201, 169, 98, 0.4);
+    transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(201, 169, 98, 0.5);
+}
+
+.music-btn.muted { opacity: 0.5; }
+
+.music-btn i {
+    font-size: 1rem;
+    color: #0a0a0a;
+    animation: none;
+}
+
+.music-btn.playing i {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 @keyframes pulseBtn {
     0%, 100% { box-shadow: 0 4px 15px rgba(201, 169, 98, 0.4); }
     50% { box-shadow: 0 4px 25px rgba(201, 169, 98, 0.6); }
