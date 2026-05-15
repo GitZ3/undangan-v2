@@ -182,26 +182,39 @@
 
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
-                if (!entry.isIntersecting) return;
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
 
-                var id = entry.target.getAttribute('id');
-                var found = null;
+                    var id = entry.target.getAttribute('id');
+                    var found = null;
 
-                els.tabBtns().forEach(function (btn) {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('data-section') === id) {
-                        btn.classList.add('active');
-                        found = btn;
+                    els.tabBtns().forEach(function (btn) {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-section') === id) {
+                            btn.classList.add('active');
+                            found = btn;
+                        }
+                    });
+
+                    if (found) {
+                        scrollNavToActive(found);
                     }
-                });
-
-                if (found) {
-                    scrollNavToActive(found);
                 }
             });
-        }, { root: null, threshold: 0.3 });
+        }, { root: null, threshold: 0.15 });
 
-        allSections.forEach(function (s) { observer.observe(s); });
+        allSections.forEach(function (s) {
+            s.classList.add('anim-section');
+            observer.observe(s);
+        });
+
+        // Mark already visible sections immediately
+        allSections.forEach(function (s) {
+            var rect = s.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                s.classList.add('in-view');
+            }
+        });
     }
 
     /* ========== UCAPAN FORM ========== */

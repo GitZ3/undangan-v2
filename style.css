@@ -255,6 +255,63 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     75% { background-position: 0% 100%; opacity: 1; }
 }
 
+/* SECTION ENTRANCE */
+.anim-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.anim-section.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.anim-section .container > *,
+.anim-section .hero-content,
+.anim-section .couple-wrapper,
+.anim-section .galeri-grid,
+.anim-section .countdown-wrapper,
+.anim-section .acara-grid,
+.anim-section .lokasi-card,
+.anim-section .ucapan-form,
+.anim-section .hadiah-grid,
+.anim-section .salam-card,
+.anim-section .ayat-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim-section.in-view .container > *,
+.anim-section.in-view .hero-content,
+.anim-section.in-view .couple-wrapper,
+.anim-section.in-view .galeri-grid,
+.anim-section.in-view .countdown-wrapper,
+.anim-section.in-view .acara-grid,
+.anim-section.in-view .lokasi-card,
+.anim-section.in-view .ucapan-form,
+.anim-section.in-view .hadiah-grid,
+.anim-section.in-view .salam-card,
+.anim-section.in-view .ayat-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.anim-section .container > *:nth-child(1) { transition-delay: 0.05s; }
+.anim-section .container > *:nth-child(2) { transition-delay: 0.1s; }
+.anim-section .container > *:nth-child(3) { transition-delay: 0.15s; }
+.anim-section.in-view .hero-content { transition-delay: 0.1s; }
+.anim-section.in-view .couple-wrapper { transition-delay: 0.15s; }
+.anim-section.in-view .galeri-grid { transition-delay: 0.15s; }
+.anim-section.in-view .countdown-wrapper { transition-delay: 0.15s; }
+.anim-section.in-view .acara-grid { transition-delay: 0.15s; }
+.anim-section.in-view .lokasi-card { transition-delay: 0.15s; }
+.anim-section.in-view .ucapan-form { transition-delay: 0.15s; }
+.anim-section.in-view .hadiah-grid { transition-delay: 0.15s; }
+.anim-section.in-view .salam-card { transition-delay: 0.1s; }
+.anim-section.in-view .ayat-card { transition-delay: 0.1s; }
+
 /* HERO */
 .hero {
     min-height: 100vh;
