@@ -40,12 +40,15 @@
         tabBtns: function () { return $$('.tab-btn'); },
         sections: function () { return $$('section[id]'); },
         ucapanForm: $('#ucapanForm'),
+        guestbookList: $('#guestbookList'),
         toast: $('#ucapanToast'),
         days: $('#days'),
         hours: $('#hours'),
         minutes: $('#minutes'),
         seconds: $('#seconds')
     };
+
+    var STORAGE_KEY = 'undangan_ucapan';
 
     /* ========== UTILS ========== */
     function pad(n) { return String(n).padStart(2, '0'); }
@@ -253,6 +256,57 @@
     }
 
     /* ========== UCAPAN FORM ========== */
+    function getUcapan() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+        catch (e) { return []; }
+    }
+
+    function simpanUcapan(data) {
+        var list = getUcapan();
+        list.unshift({
+            id: Date.now() + Math.random(),
+            nama: data.nama,
+            kehadiran: data.kehadiran,
+            pesan: data.pesan,
+            time: new Date().toISOString()
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+
+    function renderGuestbook() {
+        var list = getUcapan();
+        var el = els.guestbookList;
+        if (!el) return;
+
+        if (!list.length) {
+            el.innerHTML = '<div class="guestbook-empty">Belum ada ucapan. Jadilah yang pertama!</div>';
+            return;
+        }
+
+        el.innerHTML = list.map(function (item) {
+            var badgeClass = item.kehadiran === 'hadir' ? 'hadir' : 'tidak';
+            var badgeText = item.kehadiran === 'hadir' ? 'Hadir' : 'Tidak Hadir';
+            var time = new Date(item.time).toLocaleDateString('id-ID', {
+                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+            var pesanHtml = item.pesan ? '<div class="guestbook-item-pesan">' + escapeHtml(item.pesan) + '</div>' : '';
+            return '<div class="guestbook-item">' +
+                '<div class="guestbook-item-top">' +
+                    '<span class="guestbook-item-name">' + escapeHtml(item.nama) + '</span>' +
+                    '<span class="guestbook-item-badge ' + badgeClass + '">' + badgeText + '</span>' +
+                '</div>' +
+                pesanHtml +
+                '<div class="guestbook-item-time">' + time + '</div>' +
+            '</div>';
+        }).join('');
+    }
+
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
     function handleUcapanSubmit(e) {
         e.preventDefault();
 
@@ -272,7 +326,8 @@
             return;
         }
 
-        console.log('[Ucapan]', { nama: nama, kehadiran: kehadiran, pesan: pesan });
+        simpanUcapan({ nama: nama, kehadiran: kehadiran, pesan: pesan });
+        renderGuestbook();
         showToast('Terima kasih! Ucapan Anda telah terkirim.');
         form.reset();
     }
@@ -314,6 +369,7 @@
     function init() {
         bindEvents();
         setupIntersectionObserver();
+        renderGuestbook();
 
         var activeBtn = els.tabNav ? els.tabNav.querySelector('.tab-btn.active') : null;
         if (!activeBtn && els.tabNav) {
