@@ -341,9 +341,9 @@
                     '<div class="guestbook-body-top">' +
                         '<span class="guestbook-item-name">' + escapeHtml(item.nama) + '</span>' +
                         '<span class="guestbook-item-badge ' + badgeClass + '">' + badgeText + '</span>' +
-                        '<span class="guestbook-item-time">' + waktu + '</span>' +
                     '</div>' +
                     pesanHtml +
+                    '<div class="guestbook-item-time">' + waktu + '</div>' +
                 '</div>' +
             '</div>';
         }).join('');

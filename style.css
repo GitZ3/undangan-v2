@@ -1547,8 +1547,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 .guestbook-item-time {
     color: #555;
     font-size: 0.65rem;
-    margin-left: auto;
-    white-space: nowrap;
+    margin-top: 4px;
 }
 
 .guestbook-item-pesan {
