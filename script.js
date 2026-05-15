@@ -42,6 +42,7 @@
         sections: function () { return $$('section[id]'); },
         ucapanForm: $('#ucapanForm'),
         guestbookList: $('#guestbookList'),
+        guestbookStats: $('#guestbookStats'),
         toast: $('#ucapanToast'),
         days: $('#days'),
         hours: $('#hours'),
@@ -312,7 +313,15 @@
     function renderGuestbook() {
         var list = getUcapan();
         var el = els.guestbookList;
+        var stats = els.guestbookStats;
         if (!el) return;
+
+        var totalHadir = 0;
+        list.forEach(function (i) { if (i.kehadiran === 'hadir') totalHadir++; });
+
+        if (stats) {
+            stats.textContent = list.length + ' pesan \u00B7 ' + totalHadir + ' hadir';
+        }
 
         if (!list.length) {
             el.innerHTML = '<div class="guestbook-empty">Belum ada pesan. Jadilah yang pertama!</div>';
@@ -320,22 +329,40 @@
         }
 
         el.innerHTML = list.map(function (item) {
-            var dotClass = item.kehadiran === 'hadir' ? 'hadir' : 'tidak';
-            var time = new Date(item.time).toLocaleDateString('id-ID', {
-                hour: '2-digit', minute: '2-digit'
-            });
+            var avatarClass = item.kehadiran === 'hadir' ? 'hadir' : 'tidak';
+            var badgeClass = item.kehadiran === 'hadir' ? 'hadir' : 'tidak';
+            var badgeText = item.kehadiran === 'hadir' ? 'Hadir' : 'Tidak';
+            var initial = (item.nama || '?')[0].toUpperCase();
+            var waktu = relativeTime(item.time);
             var pesanHtml = item.pesan ? '<div class="guestbook-item-pesan">' + escapeHtml(item.pesan) + '</div>' : '';
             return '<div class="guestbook-item">' +
-                '<div class="guestbook-item-meta">' +
-                    '<span class="guestbook-item-name">' + escapeHtml(item.nama) + '</span>' +
-                    '<span class="guestbook-item-dot ' + dotClass + '"></span>' +
-                    '<span class="guestbook-item-time">' + time + '</span>' +
+                '<div class="guestbook-avatar ' + avatarClass + '">' + initial + '</div>' +
+                '<div class="guestbook-body">' +
+                    '<div class="guestbook-body-top">' +
+                        '<span class="guestbook-item-name">' + escapeHtml(item.nama) + '</span>' +
+                        '<span class="guestbook-item-badge ' + badgeClass + '">' + badgeText + '</span>' +
+                        '<span class="guestbook-item-time">' + waktu + '</span>' +
+                    '</div>' +
+                    pesanHtml +
                 '</div>' +
-                pesanHtml +
             '</div>';
         }).join('');
 
         el.scrollTop = el.scrollHeight;
+    }
+
+    function relativeTime(iso) {
+        var diff = Date.now() - new Date(iso).getTime();
+        var sec = Math.floor(diff / 1000);
+        if (sec < 10) return 'baru saja';
+        if (sec < 60) return sec + 'd lalu';
+        var min = Math.floor(sec / 60);
+        if (min < 60) return min + 'm lalu';
+        var jam = Math.floor(min / 60);
+        if (jam < 24) return jam + 'j lalu';
+        var hari = Math.floor(jam / 24);
+        if (hari < 7) return hari + 'h lalu';
+        return new Date(iso).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
     }
 
     function escapeHtml(str) {
