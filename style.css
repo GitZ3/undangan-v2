@@ -279,11 +279,11 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 #float-hands i:nth-child(10) { left: 30%; top: -5%; animation-duration: 13s; animation-delay: 5s; font-size: 1.4rem; }
 
 @keyframes floatHand {
-    0% { transform: translateY(0) rotate(180deg) scale(1); opacity: 0; }
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0; }
     10% { opacity: 0.15; }
-    50% { transform: translateY(50vh) rotate(360deg) scale(1.2); opacity: 0.12; }
+    50% { transform: translateY(50vh) rotate(180deg) scale(1.2); opacity: 0.12; }
     90% { opacity: 0.15; }
-    100% { transform: translateY(105vh) rotate(540deg) scale(1); opacity: 0; }
+    100% { transform: translateY(105vh) rotate(360deg) scale(1); opacity: 0; }
 }
 
 @keyframes pageGlow {
