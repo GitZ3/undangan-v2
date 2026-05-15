@@ -263,7 +263,7 @@
 
     function simpanUcapan(data) {
         var list = getUcapan();
-        list.unshift({
+        list.push({ /* push, not unshift — newest at bottom */
             id: Date.now() + Math.random(),
             nama: data.nama,
             kehadiran: data.kehadiran,
@@ -279,26 +279,27 @@
         if (!el) return;
 
         if (!list.length) {
-            el.innerHTML = '<div class="guestbook-empty">Belum ada ucapan. Jadilah yang pertama!</div>';
+            el.innerHTML = '<div class="guestbook-empty">Belum ada pesan. Jadilah yang pertama!</div>';
             return;
         }
 
         el.innerHTML = list.map(function (item) {
-            var badgeClass = item.kehadiran === 'hadir' ? 'hadir' : 'tidak';
-            var badgeText = item.kehadiran === 'hadir' ? 'Hadir' : 'Tidak Hadir';
+            var dotClass = item.kehadiran === 'hadir' ? 'hadir' : 'tidak';
             var time = new Date(item.time).toLocaleDateString('id-ID', {
-                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                hour: '2-digit', minute: '2-digit'
             });
             var pesanHtml = item.pesan ? '<div class="guestbook-item-pesan">' + escapeHtml(item.pesan) + '</div>' : '';
             return '<div class="guestbook-item">' +
-                '<div class="guestbook-item-top">' +
+                '<div class="guestbook-item-meta">' +
                     '<span class="guestbook-item-name">' + escapeHtml(item.nama) + '</span>' +
-                    '<span class="guestbook-item-badge ' + badgeClass + '">' + badgeText + '</span>' +
+                    '<span class="guestbook-item-dot ' + dotClass + '"></span>' +
+                    '<span class="guestbook-item-time">' + time + '</span>' +
                 '</div>' +
                 pesanHtml +
-                '<div class="guestbook-item-time">' + time + '</div>' +
             '</div>';
         }).join('');
+
+        el.scrollTop = el.scrollHeight;
     }
 
     function escapeHtml(str) {
