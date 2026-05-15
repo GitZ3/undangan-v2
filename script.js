@@ -72,13 +72,13 @@
 
         els.cover.classList.add('fade-out');
         playMusic();
-        spawnFloatingHands();
 
         setTimeout(function () {
             els.cover.style.display = 'none';
             els.undangan.classList.remove('hidden');
             window.scrollTo(0, 0);
             mulaiCountdown();
+            spawnFloatingHands();
         }, CONFIG.coverFadeMs);
     }
 
