@@ -400,7 +400,8 @@
 
         if (els.tabNavToggle) {
             els.tabNavToggle.addEventListener('click', function () {
-                toggleNav();
+                showNav();
+                resetNavTimer();
             });
         }
 
