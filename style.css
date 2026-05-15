@@ -1701,7 +1701,6 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     width: 54px;
     height: 187px;
     overflow-y: auto;
-    overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
     overscroll-behavior: contain;
@@ -1713,25 +1712,26 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     left: -62px;
 }
 
+.tab-nav::-webkit-scrollbar { display: none; }
+
 .tab-nav-toggle {
-    position: absolute;
-    right: -18px;
+    position: fixed;
+    left: -8px;
     top: 50%;
     transform: translateY(-50%);
-    width: 18px;
-    height: 40px;
+    width: 24px;
+    height: 44px;
     background: rgba(26, 26, 26, 0.95);
     border: 1px solid rgba(201, 169, 98, 0.3);
-    border-left: none;
     border-radius: 0 10px 10px 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    font-size: 0.6rem;
-    transition: all 0.3s ease;
-    z-index: 9998;
+    font-size: 0.65rem;
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9996;
 }
 
 .tab-nav-toggle:hover {
@@ -1742,7 +1742,11 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     transition: transform 0.35s ease;
 }
 
-.tab-nav.hide .tab-nav-toggle i {
+.tab-nav.hide + .tab-nav-toggle {
+    left: 15px;
+}
+
+.tab-nav.hide + .tab-nav-toggle i {
     transform: rotate(180deg);
 }
 

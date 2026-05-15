@@ -389,8 +389,7 @@
         }
 
         if (els.tabNavToggle) {
-            els.tabNavToggle.addEventListener('click', function (e) {
-                e.stopPropagation();
+            els.tabNavToggle.addEventListener('click', function () {
                 toggleNav();
             });
         }
