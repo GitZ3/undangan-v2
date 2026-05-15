@@ -11,14 +11,14 @@
             return d;
         })(),
         coverFadeMs: 800,
-        autoScrollIntervalMs: 5000,
+        autoScrollSpeed: 1,
         toastDurationMs: 3000
     };
 
     /* ========== STATE ========== */
     var state = {
         autoScrollEnabled: false,
-        scrollInterval: null,
+        scrollRafId: null,
         countdownInterval: null
     };
 
@@ -121,32 +121,33 @@
     }
 
     function startAutoScroll() {
-        var sectionList = $$('section');
-        var current = 0;
+        if (state.scrollRafId) return;
 
-        function next() {
-            if (!state.autoScrollEnabled) return;
-
-            if (current < sectionList.length) {
-                sectionList[current].scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-                current++;
-            } else {
-                current = 0;
+        function step() {
+            if (!state.autoScrollEnabled) {
+                state.scrollRafId = null;
+                return;
             }
+
+            var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            var current = window.scrollY;
+
+            if (current >= maxScroll - 2) {
+                window.scrollTo(0, 0);
+            } else {
+                window.scrollBy(0, CONFIG.autoScrollSpeed);
+            }
+
+            state.scrollRafId = requestAnimationFrame(step);
         }
 
-        stopAutoScroll();
-        state.scrollInterval = setInterval(next, CONFIG.autoScrollIntervalMs);
-        next();
+        state.scrollRafId = requestAnimationFrame(step);
     }
 
     function stopAutoScroll() {
-        if (state.scrollInterval) {
-            clearInterval(state.scrollInterval);
-            state.scrollInterval = null;
+        if (state.scrollRafId) {
+            cancelAnimationFrame(state.scrollRafId);
+            state.scrollRafId = null;
         }
     }
 
@@ -160,6 +161,19 @@
         els.tabBtns().forEach(function (b) { b.classList.remove('active'); });
         var match = els.tabNav.querySelector('[data-section="' + sectionId + '"]');
         if (match) match.classList.add('active');
+    }
+
+    function scrollNavToActive(btn) {
+        var nav = els.tabNav;
+        if (!nav) return;
+
+        var navHeight = nav.clientHeight;
+        var btnTop = btn.offsetTop;
+        var btnHeight = btn.offsetHeight;
+        var targetScroll = btnTop - (navHeight / 2) + (btnHeight / 2);
+
+        targetScroll = Math.max(0, Math.min(targetScroll, nav.scrollHeight - navHeight));
+        nav.scrollTop = targetScroll;
     }
 
     function setupIntersectionObserver() {
@@ -182,11 +196,7 @@
                 });
 
                 if (found) {
-                    found.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest',
-                        inline: 'center'
-                    });
+                    scrollNavToActive(found);
                 }
             });
         }, { root: null, threshold: 0.3 });
@@ -244,7 +254,7 @@
 
         window.addEventListener('beforeunload', function () {
             if (state.countdownInterval) clearInterval(state.countdownInterval);
-            if (state.scrollInterval) clearInterval(state.scrollInterval);
+            stopAutoScroll();
         });
     }
 

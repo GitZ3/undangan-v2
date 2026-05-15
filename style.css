@@ -1490,10 +1490,11 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
     z-index: 9997;
     border: 1px solid rgba(201, 169, 98, 0.3);
-    max-height: 80vh;
+    height: 187px;
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    overscroll-behavior: contain;
 }
 
 .tab-nav::-webkit-scrollbar { display: none; }
