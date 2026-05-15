@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- COVER -->
+    <section id="cover">
+        <div class="cover-pattern"></div>
+        <i class="fa-solid fa-dove cover-ornament-1"></i>
+        <i class="fa-solid fa-ring cover-ornament-2"></i>
+        <i class="fa-solid fa-heart cover-ornament-3"></i>
+        <i class="fa-solid fa-dove cover-ornament-4"></i>
+
+        <div class="cover-content">
+            <div class="cover-ring">
+                <i class="fa-solid fa-ring"></i>
+            </div>
+
+            <p class="cover-subtitle">Undangan Pernikahan</p>
+
+            <div class="cover-names">
+                <h1 class="cover-groom">TesPria</h1>
+                <div class="cover-couple-icon">
+                    <i class="fa-solid fa-person"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-person-dress"></i>
+                </div>
+                <h1 class="cover-bride">TesWanita</h1>
+            </div>
+
+            <div class="cover-line"></div>
+
+            <p class="cover-date">30 tes 2008</p>
+
+            <button class="btn-buka" id="btnBuka" aria-label="Buka undangan">
+                <i class="fa-solid fa-envelope-open"></i>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+
+        <div class="cover-bottom-ornament">
+            <i class="fa-solid fa-dove"></i>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <main id="undangan" class="hidden">
+        <!-- HERO -->
+        <section class="hero" id="hero" data-section="hero">
+            <div class="corner-decor top-left"></div>
+            <div class="corner-decor top-right"></div>
+            <div class="corner-decor bottom-left"></div>
+            <div class="corner-decor bottom-right"></div>
+
+            <div class="hero-particles">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="hero-decoration top">
+                <div class="flourish"></div>
+                <i class="fa-solid fa-dove"></i>
+                <div class="flourish"></div>
+            </div>
+
+            <div class="hero-content">
+                <p class="subtitle">Undangan Pernikahan</p>
+
+                <h1 class="bride-name groom">TesPria</h1>
+                <div class="ampersand">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h1 class="bride-name bride">TesWanita</h1>
+
+                <div class="divider-ornament">
+                    <span class="divider-line"></span>
+                    <i class="fa-solid fa-ring"></i>
+                    <span class="divider-line"></span>
+                </div>
+
+                <p class="invite-text">Mohon Doa Restu Anda</p>
+
+                <div class="hero-date-box">
+                    <div class="date-frame">
+                        <span class="day">30</span>
+                        <div class="month-year">
+                            <span class="month">tes</span>
+                            <span class="year">2008</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-decoration bottom">
+                <div class="flourish"></div>
+                <i class="fa-solid fa-dove"></i>
+                <div class="flourish"></div>
+            </div>
+
+            <div class="scroll-hint">
+                <p>Scroll ke bawah</p>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- SALAM -->
+        <section class="salam-section" id="salam" data-section="salam">
+            <div class="section-corner tl"></div>
+            <div class="section-corner tr"></div>
+            <div class="section-corner bl"></div>
+            <div class="section-corner br"></div>
+            <div class="container">
+                <div class="salam-card">
+                    <div class="card-ornament top">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div class="salam-decoration">
+                        <i class="fa-solid fa-hands"></i>
+                    </div>
+                    <p class="salam-text">Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+                    <div class="salam-divider">
+                        <span></span>
+                        <i class="fa-solid fa-heart"></i>
+                        <span></span>
+                    </div>
+                    <p class="salam-desc">Dengan rahmat dan ridho Allah SWT, kami mengundang Anda untuk menghadiri acara pernikahan kami</p>
+                    <div class="card-ornament bottom">
+                        <i class="fa-solid fa-dove"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AYAT -->
+        <section class="ayat-section" id="ayat" data-section="ayat">
+            <div class="section-ornament">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            <div class="container">
+                <div class="ayat-card">
+                    <div class="ayat-border">
+                        <div class="border-corner tl"></div>
+                        <div class="border-corner tr"></div>
+                        <div class="border-corner bl"></div>
+                        <div class="border-corner br"></div>
+                    </div>
+                    <p class="arab">وَمِنۡ اٰیٰتِہِ اَنۡ خَلَقَ لَکُمۡ مِّنۡ اَنفُسِکُمۡ اَزۡوَاجًا لِّتَسۡکُنُوۡۤا اِلَیۡھَا وَجَعَلَ بَیۡنَکُمۡ مَوَدَّةً وَّرَحۡمَةًۚ</p>
+                    <div class="ayat-divider">
+                        <i class="fa-solid fa-minus"></i>
+                        <i class="fa-solid fa-star-of-david"></i>
+                        <i class="fa-solid fa-minus"></i>
+                    </div>
+                    <p class="terjemahan">"Dan di antara tanda-tanda kekuasaanNya, Dia menciptakan untuk kalian pasangan-pasangan dari jenis kalian sendiri, agar kalian cenderung dan merasa tentram kepadanya, dan Dia menjadikan di antara kalian rasa kasih dan rahmat."</p>
+                    <p class="surah">QS. Ar-Rum : 21</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEMPELAI -->
+        <section class="mempelai-section" id="mempelai" data-section="mempelai">
+            <div class="mempelai-bg">
+                <div class="bg-ornament"></div>
+                <div class="bg-ornament"></div>
+                <div class="bg-ornament"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-line-decor">
+                        <span></span>
+                    </div>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-user-group"></i>
+                        Mempelai
+                    </h2>
+                    <div class="section-line-decor">
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="couple-wrapper">
+                    <div class="couple-card">
+                        <div class="photo-frame">
+                            <div class="frame-corner tl"></div>
+                            <div class="frame-corner tr"></div>
+                            <div class="frame-corner bl"></div>
+                            <div class="frame-corner br"></div>
+                            <div class="photo-inner">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="couple-info">
+                            <div class="info-ornament">
+                                <i class="fa-solid fa-ring"></i>
+                            </div>
+                            <h3 class="name">TesPria</h3>
+                            <p class="title">Calon Mempelai Pria</p>
+                            <div class="parents">
+                                <p>Putra dari</p>
+                                <p class="parents-name">Bpk. XXX & Ibu XXX</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="couple-heart">
+                        <div class="heart-outer">
+                            <div class="heart-inner">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="couple-card">
+                        <div class="photo-frame">
+                            <div class="frame-corner tl"></div>
+                            <div class="frame-corner tr"></div>
+                            <div class="frame-corner bl"></div>
+                            <div class="frame-corner br"></div>
+                            <div class="photo-inner">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="couple-info">
+                            <h3 class="name">TesWanita</h3>
+                            <p class="title">Calon Mempelai Wanita</p>
+                            <div class="parents">
+                                <p>Putri dari</p>
+                                <p class="parents-name">Bpk. XXX & Ibu XXX</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERI -->
+        <section class="galeri-section" id="galeri" data-section="galeri">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-line-decor">
+                        <span></span>
+                    </div>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-images"></i>
+                        Galeri Kami
+                    </h2>
+                    <div class="section-line-decor">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="galeri-grid">
+                    <div class="galeri-item">
+                        <div class="galeri-frame">
+                            <div class="galeri-img">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <div class="galeri-overlay">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="galeri-item">
+                        <div class="galeri-frame">
+                            <div class="galeri-img">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <div class="galeri-overlay">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="galeri-item">
+                        <div class="galeri-frame">
+                            <div class="galeri-img">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <div class="galeri-overlay">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="galeri-item">
+                        <div class="galeri-frame">
+                            <div class="galeri-img">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <div class="galeri-overlay">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="galeri-item">
+                        <div class="galeri-frame">
+                            <div class="galeri-img">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <div class="galeri-overlay">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="galeri-item">
+                        <div class="galeri-frame">
+                            <div class="galeri-img">
+                                <i class="fa-solid fa-camera"></i>
+                            </div>
+                            <div class="galeri-overlay">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COUNTDOWN -->
+        <section class="countdown-section" id="countdown" data-section="countdown">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-line"></div>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                        Menghitung Hari
+                    </h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="countdown-wrapper">
+                    <div class="countdown-box">
+                        <span class="countdown-num" id="days">00</span>
+                        <span class="countdown-label">Hari</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-box">
+                        <span class="countdown-num" id="hours">00</span>
+                        <span class="countdown-label">Jam</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-box">
+                        <span class="countdown-num" id="minutes">00</span>
+                        <span class="countdown-label">Menit</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-box">
+                        <span class="countdown-num" id="seconds">00</span>
+                        <span class="countdown-label">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACARA -->
+        <section class="acara-section" id="acara" data-section="acara">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-line"></div>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-calendar-day"></i>
+                        Jadwal Acara
+                    </h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="acara-grid">
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fa-solid fa-mosque"></i>
+                        </div>
+                        <h3>Akad Nikah</h3>
+                        <div class="event-info">
+                            <p><i class="fa-regular fa-calendar"></i> 30 tes 2008</p>
+                            <p><i class="fa-regular fa-clock"></i> 08.00 - 10.00 WIB</p>
+                            <p><i class="fa-solid fa-map-marker-alt"></i> LANGIT</p>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fa-solid fa-champagne-glasses"></i>
+                        </div>
+                        <h3>Resepsi</h3>
+                        <div class="event-info">
+                            <p><i class="fa-regular fa-calendar"></i> 30 tes 2008</p>
+                            <p><i class="fa-regular fa-clock"></i> 10.00 - 00.00 WIB</p>
+                            <p><i class="fa-solid fa-map-marker-alt"></i> LANGIT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOKASI -->
+        <section class="lokasi-section" id="lokasi" data-section="lokasi">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-line"></div>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        Lokasi
+                    </h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="lokasi-card">
+                    <div class="lokasi-icon">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <h3>Lokasi Acara</h3>
+                    <p class="lokasi-name">LANGIT</p>
+                    <p class="lokasi-alamat">Silakan hubungi keluarga untuk detail lokasi</p>
+                    <a href="https://www.google.com/maps/search/LANGIT" target="_blank" class="btn-maps">
+                        <i class="fa-solid fa-directions"></i>
+                        Buka Peta
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- UCAPAN -->
+        <section class="ucapan-section" id="ucapan" data-section="ucapan">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-line"></div>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-comments"></i>
+                        Ucapkan Sesuatu
+                    </h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <form class="ucapan-form" id="ucapanForm">
+                    <input type="text" name="nama" placeholder="Nama Anda" required>
+                    <select name="kehadiran" required>
+                        <option value="">Konfirmasi Kehadiran</option>
+                        <option value="hadir">Hadir</option>
+                        <option value="tidak">Tidak Hadir</option>
+                    </select>
+                    <textarea name="pesan" placeholder="Tulis ucapan atau pesan untuk kedua mempelai..." rows="3"></textarea>
+                    <button type="submit">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Kirim Ucapan
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- HADIAH -->
+        <section class="hadiah-section" id="hadiah" data-section="hadiah">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-line"></div>
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-gift"></i>
+                        Kirim Hadiah
+                    </h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <p class="hadiah-text">Doa restu Anda adalah hadiah terindah bagi kami</p>
+
+                <div class="hadiah-grid">
+                    <div class="hadiah-card">
+                        <i class="fa-solid fa-gift"></i>
+                        <h4>Kirim Hadiah Fisik</h4>
+                        <p>Hubungi keluarga terdekat kami</p>
+                    </div>
+                    <div class="hadiah-card">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <h4>Transfer Digital</h4>
+                        <p>BCA: 1234567890</p>
+                        <p>a.n. TesPria</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-decoration">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <p class="footer-wish">Semoga Allah memberkati kami</p>
+            <p class="footer-greet">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+        </footer>
+    </main>
+
+    <!-- AUTO SCROLL -->
+    <button class="auto-scroll-btn" id="autoScrollBtn" aria-label="Auto scroll">
+        <i class="fa-solid fa-play" id="scrollIcon"></i>
+    </button>
+
+    <!-- TAB NAV -->
+    <nav class="tab-nav" id="tabNav" aria-label="Navigasi section">
+        <button class="tab-btn active" data-section="hero" aria-label="Home">
+            <i class="fa-solid fa-house"></i>
+        </button>
+        <button class="tab-btn" data-section="salam" aria-label="Salam">
+            <i class="fa-solid fa-hands"></i>
+        </button>
+        <button class="tab-btn" data-section="ayat" aria-label="Ayat">
+            <i class="fa-solid fa-book-quran"></i>
+        </button>
+        <button class="tab-btn" data-section="mempelai" aria-label="Mempelai">
+            <i class="fa-solid fa-user-group"></i>
+        </button>
+        <button class="tab-btn" data-section="galeri" aria-label="Galeri">
+            <i class="fa-solid fa-images"></i>
+        </button>
+        <button class="tab-btn" data-section="countdown" aria-label="Hitung">
+            <i class="fa-solid fa-hourglass-half"></i>
+        </button>
+        <button class="tab-btn" data-section="acara" aria-label="Acara">
+            <i class="fa-solid fa-calendar-day"></i>
+        </button>
+        <button class="tab-btn" data-section="lokasi" aria-label="Lokasi">
+            <i class="fa-solid fa-map-location-dot"></i>
+        </button>
+        <button class="tab-btn" data-section="ucapan" aria-label="Ucap">
+            <i class="fa-solid fa-comments"></i>
+        </button>
+        <button class="tab-btn" data-section="hadiah" aria-label="Hadiah">
+            <i class="fa-solid fa-gift"></i>
+        </button>
+    </nav>
+
+    <div id="ucapanToast" class="toast hidden"></div>
+</body>
+</html>
