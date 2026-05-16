@@ -1261,14 +1261,23 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    max-width: 320px;
+    gap: 0;
+    max-width: 240px;
     margin: 0 auto;
-    padding: 10px 0;
+    padding: 0;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-height: 80vh;
 }
+
+.galeri-grid::-webkit-scrollbar { display: none; }
 
 .galeri-item {
     width: 100%;
+    flex-shrink: 0;
+    scroll-snap-align: start;
     perspective: 1000px;
 }
 
@@ -2070,8 +2079,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .section-title { font-size: 1.1rem; gap: 6px; }
     .section-title i { font-size: 0.9rem; }
     .section-line { max-width: 30px; }
-    .galeri-grid { max-width: 280px; }
-    .galeri-item { width: 100%; }
+    .galeri-grid { max-width: 220px; }
 }
 
 @media (max-width: 480px) {
