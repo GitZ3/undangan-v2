@@ -1261,12 +1261,14 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     width: 100%;
     max-width: 355px;
     margin: 0 auto;
-    height: 345px;
+    height: 325px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--lavender) transparent;
-    padding: 8px 0;
+    padding: 5px;
+    border: 2px solid var(--lavender);
+    border-radius: 12px;
     box-sizing: border-box;
 }
 
@@ -2082,7 +2084,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .section-title { font-size: 1.1rem; gap: 6px; }
     .section-title i { font-size: 0.9rem; }
     .section-line { max-width: 30px; }
-    .galeri-scroll { height: 310px; }
+    .galeri-scroll { max-width: 310px; height: 290px; }
 }
 
 @media (max-width: 480px) {
