@@ -370,39 +370,50 @@
     }
 
     /* ========== COPY REKENING ========== */
-    window.copyRekening = function () {
+    function setupCopyRekening() {
+        var btn = document.getElementById('btnCopy');
         var rek = document.getElementById('rekening');
-        var btn = rek ? rek.nextElementSibling : null;
-        if (!rek) return;
+        if (!btn || !rek) return;
 
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(rek.textContent).then(function () {
-                if (btn) {
-                    btn.classList.add('copied');
-                    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-                    setTimeout(function () {
-                        btn.classList.remove('copied');
-                        btn.innerHTML = '<i class="fa-regular fa-copy"></i>';
-                    }, 2000);
-                }
-                showToast('Nomor rekening disalin!');
-            }).catch(function () {
-                fallbackCopy(rek);
-            });
-        } else {
-            fallbackCopy(rek);
-        }
-    };
+        btn.addEventListener('click', function () {
+            var text = rek.textContent.trim();
 
-    function fallbackCopy(el) {
-        var range = document.createRange();
-        range.selectNodeContents(el);
-        var sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-        document.execCommand('copy');
-        sel.removeAllRanges();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function () {
+                    copiedFeedback(btn);
+                }).catch(function () {
+                    fallbackCopy(text, btn);
+                });
+            } else {
+                fallbackCopy(text, btn);
+            }
+        });
+    }
+
+    function copiedFeedback(btn) {
+        btn.classList.add('copied');
+        btn.innerHTML = '<i class="fa-solid fa-check"></i>';
         showToast('Nomor rekening disalin!');
+        setTimeout(function () {
+            btn.classList.remove('copied');
+            btn.innerHTML = '<i class="fa-regular fa-copy"></i>';
+        }, 2000);
+    }
+
+    function fallbackCopy(text, btn) {
+        try {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            copiedFeedback(btn);
+        } catch (e) {
+            showToast('Gagal menyalin. Salin manual: ' + text);
+        }
     }
 
     /* ========== UCAPAN FORM ========== */
@@ -506,6 +517,7 @@
     /* ========== INIT ========== */
     function init() {
         bindEvents();
+        setupCopyRekening();
         setupIntersectionObserver();
         hideVideoPlaceholder();
 
