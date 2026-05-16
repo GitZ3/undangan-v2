@@ -1267,7 +1267,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     scrollbar-width: thin;
     scrollbar-color: var(--lavender) transparent;
     padding: 5px;
-    border: 2px solid var(--lavender);
+    border: 2px solid var(--rose);
     border-radius: 12px;
     box-sizing: border-box;
 }
