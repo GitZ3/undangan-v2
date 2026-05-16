@@ -1265,7 +1265,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
-    scrollbar-color: var(--lavender) transparent;
+    scrollbar-color: var(--rose) transparent;
     padding: 5px;
     border: 2px solid var(--rose);
     border-radius: 12px;
@@ -1273,7 +1273,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 }
 
 .galeri-scroll::-webkit-scrollbar { width: 4px; }
-.galeri-scroll::-webkit-scrollbar-thumb { background: var(--lavender); border-radius: 4px; }
+.galeri-scroll::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 4px; }
 
 .galeri-grid {
     display: grid;
@@ -1292,14 +1292,14 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     height: 0;
     padding-bottom: 177.78%;
     background: var(--card);
-    border: 3px solid var(--lavender);
+    border: 3px solid var(--rose);
     border-radius: 10px;
     overflow: hidden;
     transform-style: preserve-3d;
     transition: all 0.4s ease;
     box-shadow:
         0 5px 15px var(--shadow),
-        inset 0 0 20px rgba(184, 169, 212, 0.08);
+        inset 0 0 20px rgba(212, 131, 138, 0.08);
 }
 
 .galeri-frame::before {
@@ -1309,7 +1309,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     left: 0;
     right: 0;
     bottom: 0;
-    border: 1px solid var(--lavender);
+    border: 1px solid var(--rose);
     border-radius: 8px;
     opacity: 0.3;
     transform: translateZ(10px);
@@ -1319,7 +1319,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     transform: scale(1.05);
     box-shadow:
         0 20px 40px var(--shadow-strong),
-        0 0 30px rgba(184, 169, 212, 0.25);
+        0 0 30px rgba(212, 131, 138, 0.25);
 }
 
 .galeri-img {
@@ -1336,7 +1336,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
 .galeri-img i {
     font-size: 2rem;
-    color: var(--lavender);
+    color: var(--rose);
     opacity: 0.4;
 }
 
@@ -1346,7 +1346,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(184, 169, 212, 0.2);
+    background: rgba(212, 131, 138, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1356,7 +1356,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
 .galeri-overlay i {
     font-size: 1.5rem;
-    color: var(--lavender);
+    color: var(--rose);
     transform: scale(0);
     transition: all 0.3s ease;
 }
