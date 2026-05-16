@@ -3,12 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan</title>
+    <title>Undangan Pernikahan - TesPria & TesWanita</title>
+    <meta name="description" content="Undangan pernikahan TesPria & TesWanita. Mohon doa restu Anda untuk acara pernikahan kami.">
+    <meta property="og:title" content="Undangan Pernikahan - TesPria & TesWanita">
+    <meta property="og:description" content="Mohon doa restu Anda untuk acara pernikahan kami.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gitz3.github.io/undangan-v2">
+    <meta property="og:image" content="https://gitz3.github.io/undangan-v2/poster-video.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Undangan Pernikahan - TesPria & TesWanita">
+    <meta name="twitter:description" content="Mohon doa restu Anda untuk acara pernikahan kami.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💍%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -258,6 +271,17 @@
                         <span></span>
                     </div>
                 </div>
+                <div class="video-wrapper">
+                    <div class="video-frame">
+                        <video controls preload="metadata" poster="poster-video.jpg">
+                            <source src="wedding-video.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-placeholder">
+                            <i class="fa-solid fa-play"></i>
+                            <p>Video Wedding</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="galeri-grid">
                     <div class="galeri-item">
                         <div class="galeri-frame">
@@ -488,7 +512,11 @@
                     <div class="hadiah-card">
                         <i class="fa-solid fa-credit-card"></i>
                         <h4>Transfer Digital</h4>
-                        <p>BCA: 1234567890</p>
+                        <p>BCA: <span id="rekening">1234567890</span>
+                            <button class="btn-copy" onclick="copyRekening()" title="Salin nomor rekening">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </p>
                         <p>a.n. TesPria</p>
                     </div>
                 </div>

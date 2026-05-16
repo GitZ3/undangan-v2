@@ -15,6 +15,18 @@
         toastDurationMs: 3000
     };
 
+    /* ========== FIREBASE ========== */
+    var firebaseConfig = {
+        apiKey: "AIzaSyCBfM0WIpPnz4fCH7sPu98IpIXZGRFxgro",
+        authDomain: "guest-dd0a3.firebaseapp.com",
+        projectId: "guest-dd0a3",
+        storageBucket: "guest-dd0a3.firebasestorage.app",
+        messagingSenderId: "950417950891",
+        appId: "1:950417950891:web:ead4b62a37954c1480cfee"
+    };
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+
     /* ========== STATE ========== */
     var state = {
         autoScrollEnabled: false,
@@ -47,10 +59,10 @@
         days: $('#days'),
         hours: $('#hours'),
         minutes: $('#minutes'),
-        seconds: $('#seconds')
+        seconds: $('#seconds'),
+        navWrapper: $('#navWrapper')
     };
 
-    var STORAGE_KEY = 'undangan_ucapan';
     var NAV_AUTOHIDE_MS = 3000;
 
     /* ========== UTILS ========== */
@@ -63,8 +75,6 @@
         t.classList.remove('hidden');
         setTimeout(function () { t.classList.add('hidden'); }, CONFIG.toastDurationMs);
     }
-
-    function safeId(id) { return id || ''; }
 
     /* ========== COVER ========== */
     function bukaUndangan() {
@@ -102,7 +112,7 @@
             var selisih = target - now;
 
             if (selisih <= 0) {
-                ['days','hours','minutes','seconds'].forEach(function (id) {
+                ['days', 'hours', 'minutes', 'seconds'].forEach(function (id) {
                     var el = document.getElementById(id);
                     if (el) el.textContent = '00';
                 });
@@ -295,7 +305,6 @@
             observer.observe(s);
         });
 
-        // Mark already visible sections immediately
         allSections.forEach(function (s) {
             var rect = s.getBoundingClientRect();
             if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -304,77 +313,54 @@
         });
     }
 
-    /* ========== UCAPAN FORM ========== */
-    function getUcapan() {
-        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
-        catch (e) { return []; }
-    }
-
-    function simpanUcapan(data) {
-        var list = getUcapan();
-        list.push({ /* push, not unshift — newest at bottom */
-            id: Date.now() + Math.random(),
-            nama: data.nama,
-            kehadiran: data.kehadiran,
-            pesan: data.pesan,
-            time: new Date().toISOString()
-        });
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-    }
-
-    function renderGuestbook() {
-        var list = getUcapan();
+    /* ========== GUESTBOOK (FIREBASE) ========== */
+    function renderGuestbook(snapshot) {
         var el = els.guestbookList;
         var stats = els.guestbookStats;
         if (!el) return;
 
+        var docs = snapshot.docs || [];
         var totalHadir = 0;
-        list.forEach(function (i) { if (i.kehadiran === 'hadir') totalHadir++; });
 
-        if (stats) {
-            stats.textContent = list.length + ' pesan \u00B7 ' + totalHadir + ' hadir';
-        }
-
-        if (!list.length) {
+        if (!docs.length) {
             el.innerHTML = '<div class="guestbook-empty">Belum ada pesan. Jadilah yang pertama!</div>';
+            if (stats) stats.textContent = '0 pesan · 0 hadir';
             return;
         }
 
-        el.innerHTML = list.map(function (item) {
-            var avatarClass = item.kehadiran === 'hadir' ? 'hadir' : 'tidak';
-            var badgeClass = item.kehadiran === 'hadir' ? 'hadir' : 'tidak';
-            var badgeText = item.kehadiran === 'hadir' ? 'Hadir' : 'Tidak';
-            var initial = (item.nama || '?')[0].toUpperCase();
-            var waktu = relativeTime(item.time);
-            var pesanHtml = item.pesan ? '<div class="guestbook-item-pesan">' + escapeHtml(item.pesan) + '</div>' : '';
-            return '<div class="guestbook-item">' +
+        var html = '';
+        docs.forEach(function (doc) {
+            var msg = doc.data();
+            var hadir = msg.attendance === 'hadir';
+            if (hadir) totalHadir++;
+
+            var initial = (msg.name || '?')[0].toUpperCase();
+            var avatarClass = hadir ? 'hadir' : 'tidak';
+            var badgeClass = hadir ? 'hadir' : 'tidak';
+            var badgeText = hadir ? 'Hadir' : 'Tidak';
+
+            var timeStr = msg.jam ? msg.jam : '--:--';
+            var dateStr = msg.tanggal ? msg.tanggal : '';
+
+            html += '<div class="guestbook-item">' +
                 '<div class="guestbook-avatar ' + avatarClass + '">' + initial + '</div>' +
                 '<div class="guestbook-body">' +
                     '<div class="guestbook-body-top">' +
-                        '<span class="guestbook-item-name">' + escapeHtml(item.nama) + '</span>' +
+                        '<span class="guestbook-item-name">' + escapeHtml(msg.name) + '</span>' +
                         '<span class="guestbook-item-badge ' + badgeClass + '">' + badgeText + '</span>' +
                     '</div>' +
-                    pesanHtml +
-                    '<div class="guestbook-item-time">' + waktu + '</div>' +
+                    '<div class="guestbook-item-pesan">' + escapeHtml(msg.message || '') + '</div>' +
+                    '<div class="guestbook-item-time">' + timeStr + (dateStr ? ' · ' + dateStr : '') + '</div>' +
                 '</div>' +
             '</div>';
-        }).join('');
+        });
 
+        el.innerHTML = html;
         el.scrollTop = el.scrollHeight;
-    }
 
-    function relativeTime(iso) {
-        var diff = Date.now() - new Date(iso).getTime();
-        var sec = Math.floor(diff / 1000);
-        if (sec < 10) return 'baru saja';
-        if (sec < 60) return sec + 'd lalu';
-        var min = Math.floor(sec / 60);
-        if (min < 60) return min + 'm lalu';
-        var jam = Math.floor(min / 60);
-        if (jam < 24) return jam + 'j lalu';
-        var hari = Math.floor(jam / 24);
-        if (hari < 7) return hari + 'h lalu';
-        return new Date(iso).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+        if (stats) {
+            stats.textContent = docs.length + ' pesan · ' + totalHadir + ' hadir';
+        }
     }
 
     function escapeHtml(str) {
@@ -383,6 +369,43 @@
         return div.innerHTML;
     }
 
+    /* ========== COPY REKENING ========== */
+    window.copyRekening = function () {
+        var rek = document.getElementById('rekening');
+        var btn = rek ? rek.nextElementSibling : null;
+        if (!rek) return;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(rek.textContent).then(function () {
+                if (btn) {
+                    btn.classList.add('copied');
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    setTimeout(function () {
+                        btn.classList.remove('copied');
+                        btn.innerHTML = '<i class="fa-regular fa-copy"></i>';
+                    }, 2000);
+                }
+                showToast('Nomor rekening disalin!');
+            }).catch(function () {
+                fallbackCopy(rek);
+            });
+        } else {
+            fallbackCopy(rek);
+        }
+    };
+
+    function fallbackCopy(el) {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+        showToast('Nomor rekening disalin!');
+    }
+
+    /* ========== UCAPAN FORM ========== */
     function handleUcapanSubmit(e) {
         e.preventDefault();
 
@@ -402,10 +425,37 @@
             return;
         }
 
-        simpanUcapan({ nama: nama, kehadiran: kehadiran, pesan: pesan });
-        renderGuestbook();
-        showToast('Terima kasih! Ucapan Anda telah terkirim.');
-        form.reset();
+        var now = new Date();
+        var jam = pad(now.getHours()) + ':' + pad(now.getMinutes());
+        var tanggal = pad(now.getDate()) + '-' + pad(now.getMonth() + 1) + '-' + now.getFullYear();
+
+        db.collection('guestbook').add({
+            name: nama,
+            attendance: kehadiran,
+            message: pesan,
+            jam: jam,
+            tanggal: tanggal,
+            time: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(function () {
+            showToast('Terima kasih! Ucapan Anda telah terkirim.');
+            form.reset();
+        }).catch(function () {
+            showToast('Gagal mengirim. Coba lagi.');
+        });
+    }
+
+    /* ========== VIDEO PLACEHOLDER ========== */
+    function hideVideoPlaceholder() {
+        var video = document.querySelector('#galeri video');
+        if (!video) return;
+        video.addEventListener('loadeddata', function () {
+            var pl = document.querySelector('.video-placeholder');
+            if (pl) pl.style.display = 'none';
+        });
+        if (video.readyState >= 2) {
+            var pl = document.querySelector('.video-placeholder');
+            if (pl) pl.style.display = 'none';
+        }
     }
 
     /* ========== EVENT BINDING ========== */
@@ -425,7 +475,7 @@
         if (els.tabNav) {
             els.tabNav.addEventListener('click', function (e) {
                 var btn = e.target.closest('.tab-btn');
-                if (!btn || btn.classList.contains('tab-nav-toggle')) return;
+                if (!btn) return;
                 var sectionId = btn.getAttribute('data-section');
                 if (sectionId) scrollToSection(sectionId);
             });
@@ -457,13 +507,29 @@
     function init() {
         bindEvents();
         setupIntersectionObserver();
-        renderGuestbook();
+        hideVideoPlaceholder();
 
+        // Nav auto-hide
+        setTimeout(function () {
+            if (els.tabNav) els.tabNav.classList.add('hide');
+        }, 3000);
+
+        // Active tab default
         var activeBtn = els.tabNav ? els.tabNav.querySelector('.tab-btn.active') : null;
         if (!activeBtn && els.tabNav) {
             var first = els.tabNav.querySelector('.tab-btn');
             if (first) first.classList.add('active');
         }
+
+        // Firebase guestbook real-time listener
+        db.collection('guestbook').orderBy('time', 'asc').onSnapshot(function (snapshot) {
+            renderGuestbook(snapshot);
+        }, function () {
+            var el = els.guestbookList;
+            if (el) {
+                el.innerHTML = '<div class="guestbook-empty">Gagal memuat pesan. Periksa koneksi.</div>';
+            }
+        });
     }
 
     if (document.readyState === 'loading') {
