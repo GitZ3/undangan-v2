@@ -258,7 +258,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
 /* MAIN */
 #undangan {
-    background: var(--bg);
+    background: transparent;
     min-height: 100vh;
 }
 
