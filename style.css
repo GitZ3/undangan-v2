@@ -2185,17 +2185,6 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     opacity: 0.8;
 }
 
-/* BACKGROUND TRANSPARAN */
-#cover {
-    background: linear-gradient(135deg, rgba(253, 246, 240, 0.3) 0%, rgba(240, 228, 216, 0.3) 50%, rgba(248, 236, 230, 0.3) 100%);
-}
-
-.hero::before {
-    background:
-        radial-gradient(ellipse at 30% 20%, rgba(212, 131, 138, 0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(143, 188, 176, 0.04) 0%, transparent 50%);
-}
-
 /* GUESTBOOK LOADING */
 .guestbook-loading {
     display: flex;
@@ -2238,4 +2227,59 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
 .guestbook-error button:hover {
     transform: translateY(-1px);
+}
+
+/* ====== BODY BACKGROUND ====== */
+body {
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(212, 131, 138, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(143, 188, 176, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #fdf6f0 0%, #f0e4d8 50%, #f8ece6 100%);
+    background-attachment: fixed;
+}
+
+/* ====== SECTION BACKGROUNDS SEMI-TRANSPARAN ====== */
+#undangan .salam-section,
+#undangan .countdown-section,
+#undangan .lokasi-section,
+#undangan .footer {
+    background: rgba(248, 240, 232, 0.88);
+}
+
+#undangan .ayat-section,
+#undangan .acara-section {
+    background: rgba(254, 252, 247, 0.88);
+}
+
+#undangan .mempelai-section {
+    background: var(--section-gradient-1), rgba(248, 240, 232, 0.88);
+}
+
+#undangan .galeri-section {
+    background: var(--section-gradient-1), rgba(254, 252, 247, 0.88);
+}
+
+#undangan .ucapan-section {
+    background: var(--section-gradient-2), rgba(254, 252, 247, 0.88);
+}
+
+#undangan .hadiah-section {
+    background: var(--section-gradient-3), rgba(248, 240, 232, 0.88);
+}
+
+#undangan .hero {
+    background: var(--section-gradient-3), rgba(254, 252, 247, 0.88);
+}
+
+/* Card backgrounds tetap solid agar konten terbaca */
+#undangan .salam-card,
+#undangan .ayat-card,
+#undangan .hadiah-card,
+#undangan .guestbook-item {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+/* Override cover — tetap solid minimal */
+#cover {
+    background: linear-gradient(135deg, rgba(253, 246, 240, 0.97) 0%, rgba(240, 228, 216, 0.97) 50%, rgba(248, 236, 230, 0.97) 100%);
 }
