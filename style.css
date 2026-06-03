@@ -2234,8 +2234,18 @@ body {
     background:
         radial-gradient(ellipse at 30% 20%, rgba(212, 131, 138, 0.08) 0%, transparent 50%),
         radial-gradient(ellipse at 70% 80%, rgba(143, 188, 176, 0.06) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(212, 131, 138, 0.02) 40px, rgba(212, 131, 138, 0.02) 41px),
+        repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(143, 188, 176, 0.015) 40px, rgba(143, 188, 176, 0.015) 41px),
         linear-gradient(180deg, #fdf6f0 0%, #f0e4d8 50%, #f8ece6 100%);
     background-attachment: fixed;
+}
+
+#page-bg {
+    background:
+        linear-gradient(135deg, transparent 20%, rgba(212, 131, 138, 0.08) 40%, transparent 60%),
+        linear-gradient(225deg, transparent 20%, rgba(143, 188, 176, 0.06) 40%, transparent 60%);
+    background-size: 400% 400%;
+    animation: pageGlow 12s ease-in-out infinite;
 }
 
 /* ====== SECTION BACKGROUNDS SEMI-TRANSPARAN ====== */
@@ -2243,32 +2253,32 @@ body {
 #undangan .countdown-section,
 #undangan .lokasi-section,
 #undangan .footer {
-    background: rgba(248, 240, 232, 0.88);
+    background: rgba(248, 240, 232, 0.7);
 }
 
 #undangan .ayat-section,
 #undangan .acara-section {
-    background: rgba(254, 252, 247, 0.88);
+    background: rgba(254, 252, 247, 0.7);
 }
 
 #undangan .mempelai-section {
-    background: var(--section-gradient-1), rgba(248, 240, 232, 0.88);
+    background: var(--section-gradient-1), rgba(248, 240, 232, 0.7);
 }
 
 #undangan .galeri-section {
-    background: var(--section-gradient-1), rgba(254, 252, 247, 0.88);
+    background: var(--section-gradient-1), rgba(254, 252, 247, 0.7);
 }
 
 #undangan .ucapan-section {
-    background: var(--section-gradient-2), rgba(254, 252, 247, 0.88);
+    background: var(--section-gradient-2), rgba(254, 252, 247, 0.7);
 }
 
 #undangan .hadiah-section {
-    background: var(--section-gradient-3), rgba(248, 240, 232, 0.88);
+    background: var(--section-gradient-3), rgba(248, 240, 232, 0.7);
 }
 
 #undangan .hero {
-    background: var(--section-gradient-3), rgba(254, 252, 247, 0.88);
+    background: var(--section-gradient-3), rgba(254, 252, 247, 0.7);
 }
 
 /* Card backgrounds tetap solid agar konten terbaca */
